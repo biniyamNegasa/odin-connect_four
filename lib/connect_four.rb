@@ -4,6 +4,9 @@
 class ConnectFour
   COLUMNS = 7
   ROWS = 6
+
+  attr_reader :buckets
+
   def initialize
     @buckets = []
     COLUMNS.times { @buckets << [] }
