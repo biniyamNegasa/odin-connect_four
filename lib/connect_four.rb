@@ -28,17 +28,17 @@ class ConnectFour
   def last_message?(choice)
     if game_over?(@buckets[choice].length - 1, choice)
       puts "Congratulations! Player #{@turn + 1}, You are the winner!"
-      return True
+      return true
     end
-    return False unless @available_spaces.zero?
+    return false unless @available_spaces.zero?
 
     puts "It's a draw!"
-    True
+    true
   end
 
   def play
     puts "It's player #{@turn + 1} turn."
-    choice = player_input until player_input
+    choice = player_input while choice.nil?
     @buckets[choice] << @turn
     @available_spaces -= 1
     choice
@@ -53,7 +53,7 @@ class ConnectFour
   def player_input
     print 'Choose the place you want to put your tag: '
     choice = gets.chomp.to_i
-    choice - 1 if choice.between(1, COLUMNS) && buckets[choice - 1].length < ROWS
+    choice - 1 if choice.between?(1, COLUMNS) && buckets[choice - 1].length < ROWS
   end
 
   def pretty_print
@@ -89,7 +89,7 @@ class ConnectFour
     if val.nil?
       '__ '
     else
-      (val == 1 ? "\033[93m\u262f " : "\033[92m\u262f ")
+      (val == 1 ? "\033[93m\u262f  \033[0m" : "\033[92m\u262f  \033[0m")
     end
   end
 
