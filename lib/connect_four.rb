@@ -11,14 +11,37 @@ class ConnectFour
     @turn = 0
     @buckets = []
     COLUMNS.times { @buckets << [] }
+    @available_spaces = ROWS * COLUMNS
   end
 
   def play_game
     introduction
     loop do
-      puts "It's player #{@turn + 1} turn."
-      choice = player_input until player_input
+      choice = play
+      pretty_print
+      return if last_message?(choice)
+
+      @turn = (@turn + 1) % 2
     end
+  end
+
+  def last_message?(choice)
+    if game_over?(@buckets[choice].length - 1, choice)
+      puts "Congratulations! Player #{@turn + 1}, You are the winner!"
+      return True
+    end
+    return False unless @available_spaces.zero?
+
+    puts "It's a draw!"
+    True
+  end
+
+  def play
+    puts "It's player #{@turn + 1} turn."
+    choice = player_input until player_input
+    @buckets[choice] << @turn
+    @available_spaces -= 1
+    choice
   end
 
   def introduction
