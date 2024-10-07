@@ -27,6 +27,8 @@ class ConnectFour
     false
   end
 
+  private
+
   def count(row, col, path)
     val = buckets[col][row]
     count = 0
