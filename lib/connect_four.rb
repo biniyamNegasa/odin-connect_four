@@ -19,6 +19,16 @@ class ConnectFour
     choice - 1 if choice.between(1, COLUMNS)
   end
 
+  def pretty_print
+    (ROWS - 1).downto(0) do |row|
+      COLUMNS.times do |col|
+        val = buckets[col][row]
+        print pretty(val)
+      end
+      puts
+    end
+  end
+
   def inbound?(row, col)
     row.between?(0, ROWS - 1) && col.between?(0, COLUMNS - 1)
   end
@@ -35,6 +45,14 @@ class ConnectFour
   end
 
   private
+
+  def pretty(val)
+    if val.nil?
+      '__ '
+    else
+      (val == 1 ? "\033[93m\u262f " : "\033[92m\u262f ")
+    end
+  end
 
   def count(row, col, path)
     val = buckets[col][row]
