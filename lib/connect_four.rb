@@ -64,7 +64,7 @@ class ConnectFour
       end
       puts
     end
-    COLUMNS.times { |ind| print "#{ind + 1} " }
+    COLUMNS.times { |ind| print "#{ind + 1}  " }
     puts
   end
 
