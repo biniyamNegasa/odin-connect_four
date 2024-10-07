@@ -15,13 +15,13 @@ describe ConnectFour do
       expect(connect_four.inbound?(1, 4)).to be(true)
     end
     it 'returns false if column is between 0 and 6 but row is out of bound' do
-      expect(connect_four.inbound?(1, 6)).to be(false)
+      expect(connect_four.inbound?(6, 1)).to be(false)
     end
     it 'returns false if column is out of bound and row is inbound' do
-      expect(connect_four.inbound?(8, 4)).to be(false)
+      expect(connect_four.inbound?(4, 8)).to be(false)
     end
     it 'returns false if column is out of bound and row is also out of bound' do
-      expect(connect_four.inbound?(8, 10)).to be(false)
+      expect(connect_four.inbound?(10, 8)).to be(false)
     end
   end
 end

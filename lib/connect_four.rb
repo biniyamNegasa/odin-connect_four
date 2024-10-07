@@ -11,4 +11,8 @@ class ConnectFour
     @buckets = []
     COLUMNS.times { @buckets << [] }
   end
+
+  def inbound?(row, col)
+    row.between?(0, ROWS - 1) && col.between?(0, COLUMNS - 1)
+  end
 end
