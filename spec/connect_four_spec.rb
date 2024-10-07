@@ -25,12 +25,14 @@ describe ConnectFour do
     end
   end
   describe '#game_over?' do
-    allow(connect_four).to receive(:buckets).and_return([[1, 1, 1, 0], [0, 0, 1], [1, 1, 0], [0, 0, 1], [1, 0, 1],
-                                                         [1, 1, 0], [0, 0, 0, 0]])
-    it 'returns true when there is a four consecutive numbers' do
+    before do
+      allow(connect_four).to receive(:buckets).and_return([[1, 1, 1, 0], [0, 0, 1], [1, 1, 0], [0, 0, 1], [1, 0, 1],
+                                                           [1, 1, 0], [0, 0, 0, 0]])
+    end
+    it 'returns true when there are four consecutive numbers' do
       expect(connect_four.game_over?(3, 6)).to be(true)
     end
-    it "returns false when there isn't" do
+    it "returns false when there aren't" do
       expect(connect_four.game_over?(2, 0)).to be(false)
     end
   end
