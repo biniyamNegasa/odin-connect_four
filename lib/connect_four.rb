@@ -13,6 +13,14 @@ class ConnectFour
     COLUMNS.times { @buckets << [] }
   end
 
+  def play_game
+    introduction
+    loop do
+      puts "It's player #{@turn + 1} turn."
+      choice = player_input until player_input
+    end
+  end
+
   def introduction
     puts 'Welcome to connect four! Here is the board'
     pretty_print
@@ -22,7 +30,7 @@ class ConnectFour
   def player_input
     print 'Choose the place you want to put your tag: '
     choice = gets.chomp.to_i
-    choice - 1 if choice.between(1, COLUMNS)
+    choice - 1 if choice.between(1, COLUMNS) && buckets[choice - 1].length < ROWS
   end
 
   def pretty_print
