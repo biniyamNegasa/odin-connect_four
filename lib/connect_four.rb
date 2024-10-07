@@ -8,8 +8,15 @@ class ConnectFour
   attr_reader :buckets
 
   def initialize
+    @turn = 0
     @buckets = []
     COLUMNS.times { @buckets << [] }
+  end
+
+  def player_input
+    print 'Choose the place you want to put your tag: '
+    choice = gets.chomp.to_i
+    choice - 1 if choice.between(1, COLUMNS)
   end
 
   def inbound?(row, col)
