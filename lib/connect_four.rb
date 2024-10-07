@@ -13,6 +13,12 @@ class ConnectFour
     COLUMNS.times { @buckets << [] }
   end
 
+  def introduction
+    puts 'Welcome to connect four! Here is the board'
+    pretty_print
+    puts 'You can choose one of the columns'
+  end
+
   def player_input
     print 'Choose the place you want to put your tag: '
     choice = gets.chomp.to_i
@@ -27,6 +33,8 @@ class ConnectFour
       end
       puts
     end
+    COLUMNS.times { |ind| print "#{ind + 1} " }
+    puts
   end
 
   def inbound?(row, col)
