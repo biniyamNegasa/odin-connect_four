@@ -15,14 +15,20 @@ class ConnectFour
   end
 
   def play_game
+    clear_terminal
     introduction
     loop do
       choice = play
+      clear_terminal
       pretty_print
       return if last_message?(choice)
 
       @turn = (@turn + 1) % 2
     end
+  end
+
+  def clear_terminal
+    puts "\e[H\e[2J"
   end
 
   def last_message?(choice)
